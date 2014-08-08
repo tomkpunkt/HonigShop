@@ -28,10 +28,8 @@
 <br/>
 
 <div>{{order.email}}</div>
-<div>{{bestand.Sommerhonig_500}}</div>
-<div>{{bestand.Sommerhonig_250}}</div>
-<div>{{bestand.Fruehjahrshonig_500}}</div>
-<div>{{bestand.Fruehjahrshonig_250}}</div>
+<div>{{bestand[0].name}}</div>
+<div>{{bestand[0].menge}}</div>
 
 <br/>
 
@@ -47,46 +45,21 @@
     $scope.order = {}
     $scope.messages = [];
 
-    $scope.bestand = [
-        {
-            "_id": "Fruehjar_2014_250",
-            "name": "Frühjar 2014, 250 g",
-            "menge": 88,
-            "image": "base46String",
-            "preis": 500
-        },
-        {
-            "_id": "Fruehjar_2014_500",
-            "name": "Frühjar 2014, 500 g",
-            "menge": 22,
-            "image": "base46String",
-            "preis": 800
-        }
-    ];
-
     $scope.order = {"_id": "Bestand", "_rev": "3-2d2fa6c2f64f424c9b2811df5e9c9d50", "Sommerhonig_500": 200, "Sommerhonig_250": 600, "Fruehjahrshonig_500": 100, "Fruehjahrshonig_250": 400};
-//    $http.jsonp(
-//            "http://localhost:5984/honigshop/Bestand?callback=JSON_CALLBACK")
-//            method: "JSONP",
-//            cache: false,
-//            timeout: 10000
-//          })
-    $.ajax({     url: "http://localhost:5984/honigshop/Bestand",
-             dataType: "json",
-             processData: false,
-             crossDomain: true
-             type: "GET",
-             jsonpCallback: 'getBestandCallback',
-             success: function (bestand) {
-//               $scope.bestand = bestand;
-               $scope.messages.push("Bestandsdaten geladen")
-             },
-             error: function (response) {
-//               console.log(JSON.stringify(data));
-//               console.log(JSON.stringify(status));
-               $scope.messages.push("Fehler beim Daten abholen")
-             }
-           });
+//    $http({url: "http://localhost:8080/abfrage/bestand",
+    $http({url: "http://localhost:8080/bestand.json",
+            method: "GET",
+            cache: false,
+            headers: {'Content-Type': 'application/json'},
+            timeout: 10000
+          })
+            .success(function (bestand) {
+                       $scope.bestand = bestand;
+                       $scope.messages.push("Bestandsdaten geladen")
+                     })
+            .error(function () {
+                     $scope.messages.push("Fehler beim Daten abholen")
+                   })
 
   }
 </script>
