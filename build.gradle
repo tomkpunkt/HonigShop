@@ -7,17 +7,28 @@ targetCompatibility = 1.8
 version = '1.0'
 
 repositories {
+  mavenLocal()
   mavenCentral()
+}
+buildscript {
+  repositories {
+    mavenLocal()
+    mavenCentral()
+  }
 }
 
 dependencies {
   compile("org.springframework.boot:spring-boot-starter-web:1.1.4.RELEASE")
-  compile project(':bass-backend')
 }
 
 buildscript {
   dependencies {
     classpath("org.springframework.boot:spring-boot-gradle-plugin:1.1.4.RELEASE")
   }
+}
+task wrapper(type: Wrapper) {
+  gradleVersion = '2.0'
+//  distributionUrl = "http://specs.hypoport.local/gradle/gradle-2.0-all.zip"
+  //distributionUrl = "file:///C:/Users/steffen.petelka/Downloads/gradle-2.0-all.zip"
 }
 apply plugin: 'spring-boot'
