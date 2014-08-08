@@ -19,6 +19,9 @@ buildscript {
 
 dependencies {
   compile("org.springframework.boot:spring-boot-starter-web:1.1.4.RELEASE")
+  compile("org.mongodb:mongo-java-driver:2.12.2")
+  compile("org.springframework.data:spring-data-mongodb:1.4.2.RELEASE")
+  compile("javax.inject:javax.inject:1") { force = true }
 }
 
 buildscript {
