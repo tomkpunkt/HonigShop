@@ -1,0 +1,16 @@
+{
+  "gesamtpreis": "15000",
+  "email": "hubert.k@example.org",
+  "artikel": [
+    {
+      "_id": "Fruehjar_2014_250",
+      "preis": 500,
+      "menge":2
+    },
+    {
+      "_id": "Sommer_2014_250",
+      "preis": 500,
+      "menge":1
+    }
+  ]
+}

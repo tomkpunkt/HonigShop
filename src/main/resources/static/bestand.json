@@ -1,0 +1,16 @@
+[
+  {
+    "_id": "Fruehjar_2014_250",
+    "name": "Frühjar 2014, 250 g",
+    "menge": 88,
+    "image": "base46String",
+    "preis": 500
+  },
+  {
+    "_id": "Fruehjar_2014_500",
+    "name": "Frühjar 2014, 500 g",
+    "menge": 22,
+    "image": "base46String",
+    "preis": 800
+  }
+]

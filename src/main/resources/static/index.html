@@ -47,6 +47,23 @@
     $scope.order = {}
     $scope.messages = [];
 
+    $scope.bestand = [
+        {
+            "_id": "Fruehjar_2014_250",
+            "name": "Frühjar 2014, 250 g",
+            "menge": 88,
+            "image": "base46String",
+            "preis": 500
+        },
+        {
+            "_id": "Fruehjar_2014_500",
+            "name": "Frühjar 2014, 500 g",
+            "menge": 22,
+            "image": "base46String",
+            "preis": 800
+        }
+    ];
+
     $scope.order = {"_id": "Bestand", "_rev": "3-2d2fa6c2f64f424c9b2811df5e9c9d50", "Sommerhonig_500": 200, "Sommerhonig_250": 600, "Fruehjahrshonig_500": 100, "Fruehjahrshonig_250": 400};
 //    $http.jsonp(
 //            "http://localhost:5984/honigshop/Bestand?callback=JSON_CALLBACK")
