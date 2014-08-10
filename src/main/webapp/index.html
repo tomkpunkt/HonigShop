@@ -1,0 +1,54 @@
+<html ng-app="honigShopModul">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+    <link rel="stylesheet" href="css/main.css">
+
+    <script type="application/javascript" src="js/jquery-2.1.1.js"></script>
+    <script type="application/javascript" src="js/angular-1.2.21.min.js"></script>
+    <script type="application/javascript" src="js/helper.js"></script>
+    <script type="application/javascript" src="js/controller.js"></script>
+
+</head>
+<body ng-controller="honigShopController">
+<!--[if lt IE 7]>
+<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
+    your browser</a> to improve your experience.</p>
+<![endif]-->
+
+<!-- Add your site or application content here -->
+<p>Willkommen im Honigshop</p>
+
+
+<table style="border: 0px">
+    <tr>
+        <td>Email:</td>
+        <td><input type="email" ng-model="order.email"></td>
+    </tr>
+</table>
+<br/>
+
+<div>{{order.email}}</div>
+
+<ul>
+    <li ng-repeat="artikel in bestand">
+        <img width="134" height="166" src="{{artikel.image}}">
+        <div>Name: {{artikel.name}}</div>
+        <div>Bestand: {{artikel.menge}}</div>
+        <div>Preis: {{artikel.preis | preisEuro}}</div>
+    </li>
+</ul>
+<br/>
+
+<div>Meldungen</div>
+<div ng-repeat="message in messages">{{message}}</div>
+</body>
+
+
+</html>

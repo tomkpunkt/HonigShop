@@ -1,37 +1,42 @@
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+buildscript {
+    repositories {
+        mavenLocal()
+        mavenCentral()
+    }
+}
+
 apply plugin: 'java'
 apply plugin: 'idea'
+apply plugin: 'spring-boot'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
-
 version = '1.0'
 
-repositories {
-  mavenLocal()
-  mavenCentral()
-}
-buildscript {
-  repositories {
-    mavenLocal()
-    mavenCentral()
-  }
-}
-
 dependencies {
-  compile("org.springframework.boot:spring-boot-starter-web:1.1.4.RELEASE")
-  compile("org.mongodb:mongo-java-driver:2.12.2")
-  compile("org.springframework.data:spring-data-mongodb:1.4.2.RELEASE")
-  compile("javax.inject:javax.inject:1") { force = true }
+    compile("org.springframework.boot:spring-boot-starter-web")
+    compile("org.mongodb:mongo-java-driver")
+    compile("org.springframework.data:spring-data-mongodb:1.4.2.RELEASE")
+    compile("javax.inject:javax.inject:1") { force = true }
 }
 
 buildscript {
-  dependencies {
-    classpath("org.springframework.boot:spring-boot-gradle-plugin:1.1.4.RELEASE")
-  }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.1.4.RELEASE")
+    }
 }
+
+task run(type: JavaExec) {
+    classpath configurations.runtime, sourceSets.main.output
+    main = 'org.hypoport.honig.Application'
+}
+
 task wrapper(type: Wrapper) {
-  gradleVersion = '2.0'
+    gradleVersion = '2.0'
 //  distributionUrl = "http://specs.hypoport.local/gradle/gradle-2.0-all.zip"
-  //distributionUrl = "file:///C:/Users/steffen.petelka/Downloads/gradle-2.0-all.zip"
+    //distributionUrl = "file:///C:/Users/steffen.petelka/Downloads/gradle-2.0-all.zip"
 }
-apply plugin: 'spring-boot'
