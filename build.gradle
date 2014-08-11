@@ -30,7 +30,7 @@ buildscript {
     }
 }
 
-task run(type: JavaExec) {
+task startShop(type: JavaExec) {
     classpath configurations.runtime, sourceSets.main.output
     main = 'org.hypoport.honig.Application'
 }
