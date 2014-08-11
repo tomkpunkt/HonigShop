@@ -12,5 +12,6 @@ public class Bestand {
   public final Integer menge = null;
   public final String image = null;
   public final Integer preis = null;
+  public final String beschreibung = null;
 
 }
