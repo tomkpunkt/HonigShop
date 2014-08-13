@@ -46,32 +46,32 @@
 
                     <div class="col-md-10">
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">Bestand</label>
+                          <label for="artikelMenge_{{$index}}" class="col-sm-2 control-label">Bestand</label>
 
-                            <div class="col-sm-10">
-                                <p class="form-control-static">{{artikel.menge}}</p>
-                            </div>
+                          <div class="col-sm-10">
+                            <p id="artikelMenge_{{$index}}" class="form-control-static">{{artikel.menge}}</p>
+                          </div>
                         </div>
                     </div>
 
                     <div class="col-md-10">
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">Preis</label>
+                          <label for="artikelPreis_{{$index}}" class="col-sm-2 control-label">Preis</label>
 
-                            <div class="col-sm-10">
-                                <p class="form-control-static">{{artikel.preis | preisEuro}}</p>
-                            </div>
+                          <div class="col-sm-10">
+                            <p id="artikelPreis_{{$index}}" class="form-control-static">{{artikel.preis | preisEuro}}</p>
+                          </div>
                         </div>
                     </div>
 
                     <div class="col-md-10">
                         <div class="form-group">
-                            <label for="inputNumber" class="col-sm-2 control-label">Anzahl</label>
-                            <!--Controller wird nocht nicht angesprochen beim Change https://docs.angularjs.org/api/ng/directive/ngChange-->
-                            <div class="col-sm-2" ng-controller="gesamtPreisController">
-                                <input type="number" class="form-control" id="inputNumber"
-                                       ng-model="bestellung.einzelPosten[$index].anzahl" ng-change="change()">
-                            </div>
+                          <label for="postenAnzahl_{{$index}}" class="col-sm-2 control-label">Anzahl</label>
+                          <!--Controller wird nocht nicht angesprochen beim Change https://docs.angularjs.org/api/ng/directive/ngChange-->
+                          <div class="col-sm-2">
+                            <input type="number" class="form-control" id="postenAnzahl_{{$index}}"
+                                   ng-model="bestellung.einzelPosten[$index].anzahl">
+                          </div>
                         </div>
                     </div>
                 </div>
@@ -87,7 +87,7 @@
 
                 <div class="col-sm-10">
                     <!--Geht nocht nicht.-->
-                    <p class="form-control-static">{{gesamtpreis}}</p>
+                  <p class="form-control-static">{{bestellung.gesamtpreis| preisEuro}}</p>
                 </div>
             </div>
         </div>
