@@ -14,6 +14,6 @@ public class Bestellung {
   public final String id = null;
   public final String email = null;
   public final List<Posten> einzelPosten = new ArrayList<Posten>();
-  public final Integer preisInCent = null;
+  public final Integer gesamtpreis = null;
   public final Date bestellDatum = new Date();
 }
