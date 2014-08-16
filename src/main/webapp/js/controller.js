@@ -45,8 +45,9 @@ honigShopController = function ($scope, $http) {
             headers: {'Content-Type': 'application/json'},
             data: JSON.stringify($scope.bestellung)})
 
-        .success(function (bestand) {
+        .success(function (bestellnummer) {
                    $scope.messages.push("Erfolgreich gesendet")
+                   $scope.bestellnummer = bestellnummer;
                  })
         .error(function () {
                  $scope.messages.push("Fehler beim Senden")

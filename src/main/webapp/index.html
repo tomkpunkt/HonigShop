@@ -32,7 +32,7 @@
 </div>
 
 <div class="container">
-    <form role="form">
+    <form ng-hide="bestellnummer" role="form">
         <div class="panel panel-default" ng-repeat="artikel in bestand">
             <div class="panel-heading">
                 <h3 class="panel-title">{{artikel.name}}</h3>
@@ -42,7 +42,7 @@
                     <div class="col-md-2">
                         <img src="{{artikel.image}}" class="img-thumbnail img-responsive">
                     </div>
-                    <div class="col-md-10">{{artikel.beschreibung}}</div>
+                    <div class="col-md-10"><p>{{artikel.beschreibung}}</p></div>
 
                     <div class="col-md-10">
                         <div class="form-group">
@@ -113,14 +113,15 @@
                 <button type="button" class="btn btn-primary" ng-click="bestellen()">Bestellen</button>
             </div>
         </div>
+        <br/>
+
     </form>
+    <div class="alert alert-success"  ng-show="bestellnummer" role="alert">Bestellung erfolgreich, Bestellnummer: <b>{{bestellnummer}}</b></div>
 </div>
 
-<br/>
-
+<!--
 <div>Meldungen</div>
 <div ng-repeat="message in messages">{{message}}</div>
+-->
 </body>
-
-
 </html>
