@@ -22,7 +22,8 @@ dependencies {
     compile("org.mongodb:mongo-java-driver")
     compile("org.springframework.data:spring-data-mongodb:1.4.2.RELEASE")
     compile('org.apache.commons:commons-lang3:3.3.2')
-    compile("javax.inject:javax.inject:1") { force = true }
+  compile('commons-io:commons-io:2.4')
+  compile("javax.inject:javax.inject:1") { force = true }
 }
 
 buildscript {
