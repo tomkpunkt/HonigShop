@@ -3,36 +3,77 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title></title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <title>Honigshop</title>
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/bootstrap-sandstone.css" media="screen">
+    <link rel="stylesheet" href="css/bootswatch-sandstone.less">
+    <!--<link rel="stylesheet" href="css/bootstrap.slate.min.css">-->
+    <!--<link rel="stylesheet" href="css/bootswatch.slate.less">-->
 
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
     <script type="application/javascript" src="js/jquery-2.1.1.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+    <!--<script src="js/bootstrap.min.js"></script>-->
     <script type="application/javascript" src="js/angular-1.2.21.min.js"></script>
     <script type="application/javascript" src="js/controller.js"></script>
-
 </head>
+
 <body ng-controller="honigShopController">
 <!--[if lt IE 7]>
 <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
     your browser</a> to improve your experience.</p>
 <![endif]-->
 
-<!-- Add your site or application content here -->
-<div class="jumbotron">
-    <h1>Willkommen im Honigshop</h1>
+<div class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <a href="../" class="navbar-brand">Hypoport Honigshop</a>
+            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="navbar-collapse collapse" id="navbar-main">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="../help/">Help</a>
+                </li>
+            </ul>
 
-    <p>Hier kannst Du den Honig bestellen.</p>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="http://builtwithbootstrap.com/" target="_blank">Built With Bootstrap</a></li>
+                <li><a href="https://wrapbootstrap.com/?ref=bsw" target="_blank">WrapBootstrap</a></li>
+            </ul>
+        </div>
+    </div>
 </div>
 
+<br/>
+
 <div class="container">
-    <form ng-hide="bestellnummer" role="form">
+
+    <div class="jumbotron" id="banner">
+        <div class="row">
+            <br/>
+
+            <div class="col-lg-8 col-md-7 col-sm-6">
+                <h2>Willkommen im Honigshop</h2>
+
+                <p class="lead">Hier kannst Du den lekeren Hypoport Honig bestellen.</p>
+
+                <p class="lead">Wir verwenden nur hochwertige Komponenten .... bla bla</p>
+            </div>
+            <div class="col-lg-4 col-md-5 col-sm-6">
+                <div class="sponsor">
+                    <img src="img/bee.jpg" alt="Biene" class="img-thumbnail img-responsive">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr/>
+
+    <form class="form-horizontal" ng-hide="bestellnummer" role="form">
         <div class="panel panel-default" ng-repeat="artikel in bestand">
             <div class="panel-heading">
                 <h3 class="panel-title">{{artikel.name}}</h3>
@@ -42,36 +83,36 @@
                     <div class="col-md-2">
                         <img src="{{artikel.image}}" class="img-thumbnail img-responsive">
                     </div>
-                    <div class="col-md-10"><p>{{artikel.beschreibung}}</p></div>
+                    <div class="col-md-10" style="height: 100%;">
+                        <p>{{artikel.beschreibung}}</p>
+                        <br/>
+                        <br/>
+                        <br/>
+                    </div>
 
-                    <div class="col-md-10">
-                        <div class="form-group">
-                          <label for="artikelMenge_{{$index}}" class="col-sm-2 control-label">Bestand</label>
+                    <div class="col-md-3">
+                        <label for="artikelMenge_{{$index}}" class="col-sm-4 control-label">Bestand</label>
 
-                          <div class="col-sm-10">
+                        <div class="col-sm-4">
                             <p id="artikelMenge_{{$index}}" class="form-control-static">{{artikel.menge}}</p>
-                          </div>
                         </div>
                     </div>
 
-                    <div class="col-md-10">
-                        <div class="form-group">
-                          <label for="artikelPreis_{{$index}}" class="col-sm-2 control-label">Preis</label>
+                    <div class="col-md-3">
+                        <label for="artikelPreis_{{$index}}" class="col-sm-3 control-label">Preis</label>
 
-                          <div class="col-sm-10">
-                            <p id="artikelPreis_{{$index}}" class="form-control-static">{{artikel.preis | preisEuro}}</p>
-                          </div>
+                        <div class="col-sm-4">
+                            <p id="artikelPreis_{{$index}}" class="form-control-static">{{artikel.preis |
+                                preisEuro}}</p>
                         </div>
                     </div>
 
-                    <div class="col-md-10">
-                        <div class="form-group">
-                          <label for="postenAnzahl_{{$index}}" class="col-sm-2 control-label">Anzahl</label>
-                          <!--Controller wird nocht nicht angesprochen beim Change https://docs.angularjs.org/api/ng/directive/ngChange-->
-                          <div class="col-sm-2">
+                    <div class="col-md-4">
+                        <label for="postenAnzahl_{{$index}}" class="col-sm-2 control-label">Anzahl</label>
+                        <!--Controller wird nocht nicht angesprochen beim Change https://docs.angularjs.org/api/ng/directive/ngChange-->
+                        <div class="col-sm-4">
                             <input type="number" class="form-control" id="postenAnzahl_{{$index}}"
                                    ng-model="bestellung.einzelPosten[$index].anzahl">
-                          </div>
                         </div>
                     </div>
                 </div>
@@ -83,11 +124,15 @@
                 <h3 class="panel-title">Zusammenfassung</h3>
             </div>
             <div class="panel-body">
-                <label class="col-sm-2 control-label">Gesamtpreis</label>
+                <div class="col-md-8">
+                </div>
+                <div class="col-md-2">
+                    <label class="col-sm-2 control-label">Gesamtpreis</label>
 
-                <div class="col-sm-10">
-                    <!--Geht nocht nicht.-->
-                  <p class="form-control-static">{{bestellung.gesamtpreis| preisEuro}}</p>
+                    <div class="col-sm-10">
+                        <!--Geht nocht nicht.-->
+                        <p class="form-control-static">{{bestellung.gesamtpreis| preisEuro}}</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -116,7 +161,8 @@
         <br/>
 
     </form>
-    <div class="alert alert-success"  ng-show="bestellnummer" role="alert">Bestellung erfolgreich, Bestellnummer: <b>{{bestellnummer}}</b></div>
+    <div class="alert alert-success" ng-show="bestellnummer" role="alert">Bestellung erfolgreich, Bestellnummer: <b>{{bestellnummer}}</b>
+    </div>
 </div>
 
 <!--
