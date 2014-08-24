@@ -1,5 +1,6 @@
 package org.hypoport.honig.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -7,11 +8,26 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Bestand {
 
   @Id
-  public final String id = null;
-  public final String name = null;
-  public final Integer menge = null;
-  public final String image = null;
-  public final Integer preis = null;
-  public final String beschreibung = null;
+  @JsonProperty
+  private String id;
+  @JsonProperty
+  private String name;
+  @JsonProperty
+  private Integer menge;
+  @JsonProperty
+  private String image;
+  @JsonProperty
+  private Integer preis;
+  @JsonProperty
+  private String beschreibung;
+
+  public Bestand() {
+    id = null;
+    name = null;
+    menge = null;
+    image = null;
+    preis = null;
+    beschreibung = null;
+  }
 
 }

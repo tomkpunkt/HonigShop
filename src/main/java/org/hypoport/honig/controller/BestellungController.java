@@ -10,11 +10,14 @@ import javax.inject.Inject;
 import java.io.IOException;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import static java.time.LocalDate.now;
 import static org.apache.commons.lang3.StringUtils.replace;
 import static org.springframework.http.HttpStatus.CREATED;
 import static org.springframework.http.HttpStatus.FOUND;
+import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 import static org.springframework.http.MediaType.TEXT_HTML_VALUE;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
@@ -23,6 +26,8 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 @Controller
 @RequestMapping("/bestellung")
 public class BestellungController {
+
+  Logger log = Logger.getLogger(BestellungController.class.getName());
 
   @Inject
   BestellungRepository bestellungRepository;
@@ -44,17 +49,13 @@ public class BestellungController {
   @RequestMapping(method = GET, value = "/{bestellnummer}/quittung", produces = {TEXT_HTML_VALUE})
   @ResponseStatus(FOUND)
   @ResponseBody
-  public String quittung(@PathVariable String bestellnummer) {
-    try {
-      Bestellung bestellung = bestellungRepository.findOne(bestellnummer);
-      String html = IOUtils.toString(getClass().getResourceAsStream("quittung.html"), "UTF-8");
-      html = replace(html, "$BETRAG$", bestellung.gesamtpreis / 100 + ",- &euro;");
-      html = replace(html, "$BESTELLNUMMER$", bestellnummer);
-      html = replace(html, "$AKTUELLES_DATUM$ ", now().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)));
-      return html;
-    } catch (IOException e) {
-      throw new RuntimeException(e);
-    }
+  public String quittung(@PathVariable String bestellnummer) throws IOException {
+    Bestellung bestellung = bestellungRepository.findOne(bestellnummer);
+    String html = IOUtils.toString(getClass().getResourceAsStream("quittung.html"), "UTF-8");
+    html = replace(html, "$BETRAG$", bestellung.gesamtpreis / 100 + ",- &euro;");
+    html = replace(html, "$BESTELLNUMMER$", bestellnummer);
+    html = replace(html, "$AKTUELLES_DATUM$ ", now().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)));
+    return html;
   }
 
   @RequestMapping(method = GET, produces = {APPLICATION_JSON_VALUE})
@@ -62,5 +63,12 @@ public class BestellungController {
   @ResponseBody
   public Iterable<Bestellung> readAll() {
     return bestellungRepository.findAll();
+  }
+
+  // Handle all exceptions
+  @ExceptionHandler(Exception.class)
+  @ResponseStatus(INTERNAL_SERVER_ERROR)
+  void handleException(Exception ex) {
+    log.log(Level.SEVERE, ex.getMessage(), ex);
   }
 }
