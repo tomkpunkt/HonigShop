@@ -4,17 +4,12 @@ import org.apache.commons.io.IOUtils;
 import org.hypoport.honig.model.Bestellung;
 import org.hypoport.honig.repository.BestellungRepository;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
 import java.io.IOException;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
-import java.util.List;
 
 import static java.time.LocalDate.now;
 import static org.apache.commons.lang3.StringUtils.replace;
@@ -52,13 +47,12 @@ public class BestellungController {
   public String quittung(@PathVariable String bestellnummer) {
     try {
       Bestellung bestellung = bestellungRepository.findOne(bestellnummer);
-      String html = new String(IOUtils.toByteArray(getClass().getResourceAsStream("quittung.html")), "UTF-8");
+      String html = IOUtils.toString(getClass().getResourceAsStream("quittung.html"), "UTF-8");
       html = replace(html, "$BETRAG$", bestellung.gesamtpreis / 100 + ",- &euro;");
       html = replace(html, "$BESTELLNUMMER$", bestellnummer);
       html = replace(html, "$AKTUELLES_DATUM$ ", now().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)));
       return html;
-    }
-    catch (IOException e) {
+    } catch (IOException e) {
       throw new RuntimeException(e);
     }
   }
@@ -66,7 +60,7 @@ public class BestellungController {
   @RequestMapping(method = GET, produces = {APPLICATION_JSON_VALUE})
   @ResponseStatus(FOUND)
   @ResponseBody
-  public List<Bestellung> readAll() {
+  public Iterable<Bestellung> readAll() {
     return bestellungRepository.findAll();
   }
 }
