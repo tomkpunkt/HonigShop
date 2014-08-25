@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html ng-app="honigShopAdminModul">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Admin</title>
+  <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../css/bootstrap-sandstone.css" media="screen">
+  <link rel="stylesheet" href="../css/bootswatch-sandstone.less">
+  <!--<link rel="stylesheet" href="css/bootstrap.slate.min.css">-->
+  <!--<link rel="stylesheet" href="css/bootswatch.slate.less">-->
+
+  <script type="application/javascript" src="../js/jquery-2.1.1.js"></script>
+  <!--<script src="js/bootstrap.min.js"></script>-->
+  <script type="application/javascript" src="../js/angular-1.2.21.min.js"></script>
+  <script type="application/javascript" src="../js/admin-controller.js"></script>
+  <style>
+    tr.spaceUnder > td {
+      padding-bottom: 1em;
+    }
+  </style>
+</head>
+
+<body ng-controller="honigShopAdminController">
+<div class="container">
+
+
+  <table class="table">
+    <tr>
+      <th>Email</th>
+      <th>Bestellnummer</th>
+      <th>Bestelldatum</th>
+      <th>Posten</th>
+      <th>Gesamtpreis</th>
+      <th colspan="2">Aktionen</th>
+    </tr>
+    <tr ng-repeat="bestellung in bestellungen | orderBy:'bestellDatum':true" style="">
+      <td>{{bestellung.email}}</td>
+      <td>{{bestellung.id}}</td>
+      <td>{{bestellung.bestellDatum | date:'dd.MM.yyyy'}}</td>
+      <td style="white-space: pre">{{bestellung.einzelPosten | postenFilter }}</td>
+      <td style="vertical-align: bottom">{{bestellung.gesamtpreis |preisEuro}}</td>
+      <td style="vertical-align: bottom"><a href="../bestellung/{{bestellung.id}}/quittung" target="{{bestellung.id}}" on>[Quittung]</a></td>
+      <td style="vertical-align: bottom" ng-show="!bestellung.bezahlt"><a ng-click="setzeAufBezahlt(bestellung,$index)">[Bezahlt]</a></td>
+      <td style="vertical-align: bottom" ng-show="bestellung.bezahlt">bereits Bezahlt</td>
+    </tr>
+  </table>
+</div>
+</body>
+</html>

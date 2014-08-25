@@ -18,4 +18,13 @@ public class Bestellung {
   public final List<Posten> einzelPosten = new ArrayList<>();
   public final Integer gesamtpreis = null;
   public final Date bestellDatum = new Date();
+  private boolean bezahlt = false;
+
+  public boolean isBezahlt() {
+    return bezahlt;
+  }
+
+  public void setBezahlt(boolean bezahlt) {
+    this.bezahlt = bezahlt;
+  }
 }
