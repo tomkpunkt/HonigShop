@@ -44,7 +44,7 @@ public class BestandController {
   }
 
   private Bestand subtrahiereVerkaufte(Bestand dbo) {
-    def verkauft = bestellungRepository
+    def bestellt = bestellungRepository
         .findAllWithArtikelId(dbo.id)
         .collect { it.einzelPosten }
         .flatten().findAll { it.artikelId == dbo.id && it.anzahl > 0 }
@@ -53,7 +53,7 @@ public class BestandController {
     new Bestand(
         id: dbo.id,
         name: dbo.name,
-        menge: dbo.menge - (verkauft ?: 0),
+        menge: dbo.menge - (bestellt ?: 0),
         image: dbo.image,
         preis: dbo.preis,
         beschreibung: dbo.beschreibung)
