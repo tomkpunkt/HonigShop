@@ -6,15 +6,15 @@
     <title>Honigshop</title>
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--<link rel="stylesheet" href="css/bootstrap.min.css">-->
     <link rel="stylesheet" href="css/bootstrap-sandstone.css" media="screen">
     <link rel="stylesheet" href="css/bootswatch-sandstone.less">
-    <!--<link rel="stylesheet" href="css/bootstrap.slate.min.css">-->
-    <!--<link rel="stylesheet" href="css/bootswatch.slate.less">-->
+    <link rel="stylesheet" href="css/honigshop.less">
 
     <script type="application/javascript" src="js/jquery-2.1.1.js"></script>
-    <!--<script src="js/bootstrap.min.js"></script>-->
     <script type="application/javascript" src="js/angular-1.2.21.min.js"></script>
-  <script type="application/javascript" src="js/bestellung-controller.js"></script>
+    <script type="application/javascript" src="js/bestellung-controller.js"></script>
 </head>
 
 <body ng-controller="honigShopController">
@@ -102,8 +102,7 @@
                         <label for="artikelPreis_{{$index}}" class="col-sm-3 control-label">Preis</label>
 
                         <div class="col-sm-4">
-                            <p id="artikelPreis_{{$index}}" class="form-control-static">{{artikel.preis |
-                                preisEuro}}</p>
+                            <p id="artikelPreis_{{$index}}" class="form-control-static">{{artikel.preis | preisEuro}}</p>
                         </div>
                     </div>
 
@@ -143,9 +142,10 @@
                 <div class="form-group pull-right">
                     <label for="orderEmail" class="col-sm-2 control-label">Email:</label>
 
-                    <div class="col-sm-10">
+                    <div class="col-sm-10" >
                         <input type="email" class="form-control" id="orderEmail" placeholder="Email"
-                               ng-model="bestellung.email">
+                               ng-pattern='emailpattern'
+                        ng-model="bestellung.email">
                     </div>
                 </div>
             </div>
