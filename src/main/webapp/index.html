@@ -7,12 +7,14 @@
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!--<link rel="stylesheet" href="css/bootstrap.min.css">-->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/bootstrap-sandstone.css" media="screen">
     <link rel="stylesheet" href="css/bootswatch-sandstone.less">
     <link rel="stylesheet" href="css/honigshop.less">
 
     <script type="application/javascript" src="js/jquery-2.1.1.js"></script>
+    <script type="application/javascript" src="js/bootstrap.min.js"></script>
+    <script type="application/javascript" src="js/"></script>
     <script type="application/javascript" src="js/angular-1.2.21.min.js"></script>
     <script type="application/javascript" src="js/bestellung-controller.js"></script>
 </head>
@@ -73,7 +75,7 @@
 
     <hr/>
 
-    <form class="form-horizontal" ng-hide="bestellnummer" role="form">
+    <form class="form-horizontal" ng-hide="bestellnummer" role="form" name="form">
         <div class="panel panel-default" ng-repeat="artikel in bestand">
             <div class="panel-heading">
                 <h3 class="panel-title">{{artikel.name}}</h3>
@@ -143,7 +145,7 @@
                     <label for="orderEmail" class="col-sm-2 control-label">Email:</label>
 
                     <div class="col-sm-10" >
-                        <input type="email" class="form-control" id="orderEmail" placeholder="Email"
+                        <input type="email" class="form-control" id="orderEmail" placeholder="Email" ng-required="true"
                                ng-pattern='emailpattern'
                         ng-model="bestellung.email">
                     </div>
@@ -153,12 +155,14 @@
         <br/>
 
         <div class="row">
-            <div class="col-md-12">
-                <button type="button" class="btn btn-primary pull-right" ng-click="bestellen()">Bestellen</button>
+            <div class="col-md-11"></div>
+            <div id="bestellenContainer" class="col-md-1" title=""
+                 data-toggle="tooltip" data-placement="top" data-original-title="{{!form.$valid?'Bitte eine gültige Email angeben und mindestens einen Artikel auswählen!':''}}">
+                <button type="button" class="btn btn-primary pull-right" ng-disabled="!form.$valid" ng-click="bestellen()" >Bestellen</button>
             </div>
         </div>
         <br/>
-
+        <input type="number" ng-model="bestellung.gesamtpreis" min="1" ng-hide="true" style="width:0px;height: 0px; ">
     </form>
     <div class="alert alert-success" ng-show="bestellnummer" role="alert">Bestellung erfolgreich, Bestellnummer: <b>{{bestellnummer}}</b>
     </div>
@@ -168,5 +172,8 @@
 <div>Meldungen</div>
 <div ng-repeat="message in messages">{{message}}</div>
 -->
+<script type="application/javascript">
+    $('#bestellenContainer').tooltip();
+</script>
 </body>
 </html>
