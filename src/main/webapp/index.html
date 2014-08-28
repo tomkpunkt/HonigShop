@@ -44,7 +44,7 @@
 
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="http://builtwithbootstrap.com/" target="_blank">Built With Bootstrap</a></li>
-                <li><a href="https://wrapbootstrap.com/?ref=bsw" target="_blank">WrapBootstrap</a></li>
+                <li><a href="http://bootswatch.com/" target="_blank">Theme by Bootswatch</a></li>
             </ul>
         </div>
     </div>
@@ -60,6 +60,7 @@
 
             <div class="col-lg-8 col-md-7 col-sm-6">
                 <h2>Willkommen im Honigshop</h2>
+                <br/>
 
                 <p class="lead">Hier kannst Du den leckeren Hypoport Honig bestellen.</p>
 
@@ -104,7 +105,8 @@
                         <label for="artikelPreis_{{$index}}" class="col-sm-3 control-label">Preis</label>
 
                         <div class="col-sm-4">
-                            <p id="artikelPreis_{{$index}}" class="form-control-static">{{artikel.preis | preisEuro}}</p>
+                            <p id="artikelPreis_{{$index}}" class="form-control-static">{{artikel.preis |
+                                preisEuro}}</p>
                         </div>
                     </div>
 
@@ -144,10 +146,10 @@
                 <div class="form-group pull-right">
                     <label for="orderEmail" class="col-sm-2 control-label">Email:</label>
 
-                    <div class="col-sm-10" >
+                    <div class="col-sm-10">
                         <input type="email" class="form-control" id="orderEmail" placeholder="Email" ng-required="true"
                                ng-pattern='emailpattern'
-                        ng-model="bestellung.email">
+                               ng-model="bestellung.email">
                     </div>
                 </div>
             </div>
@@ -157,14 +159,29 @@
         <div class="row">
             <div class="col-md-11"></div>
             <div id="bestellenContainer" class="col-md-1" title=""
-                 data-toggle="tooltip" data-placement="top" data-original-title="{{!form.$valid?'Bitte eine gültige Email angeben und mindestens einen Artikel auswählen!':''}}">
-                <button type="button" class="btn btn-primary pull-right" ng-disabled="!form.$valid" ng-click="bestellen()" >Bestellen</button>
+                 data-toggle="tooltip" data-placement="top"
+                 data-original-title="{{!form.$valid?'Bitte eine gültige Email angeben und mindestens einen Artikel auswählen!':''}}">
+                <button type="button" class="btn btn-primary pull-right" ng-disabled="!form.$valid"
+                        ng-click="bestellen()">Bestellen
+                </button>
             </div>
         </div>
         <br/>
         <input type="number" ng-model="bestellung.gesamtpreis" min="1" ng-hide="true" style="width:0px;height: 0px; ">
     </form>
-    <div class="alert alert-success" ng-show="bestellnummer" role="alert">Bestellung erfolgreich, Bestellnummer: <b>{{bestellnummer}}</b>
+    <div class="alert alert-success" ng-show="bestellnummer" role="alert">
+        <p>Bestellung erfolgreich, Bestellnummer: <b>{{bestellnummer}}</b>.</p>
+
+        <p>
+            Die nächsten Schritte sind:
+        <ol>
+            <li>Drucke Dir hier gleich die <a style="color: #2266FF; text-decoration: underline"
+                                              href="/bestellung/{{bestellnummer}}/quittung" target="_blank">Quittung</a>
+                aus.
+            </li>
+            <li>Deinen Honig kannst Du bei Gina bar bezahlen und abholen.</li>
+        </ol>
+        Lass es Dir schmecken!</p>
     </div>
 </div>
 
