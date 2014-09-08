@@ -47,3 +47,31 @@ task wrapper(type: Wrapper) {
   distributionUrl = "http://specs.hypoport.local/gradle/gradle-2.0-all.zip"
   //distributionUrl = "file:///C:/Users/steffen.petelka/Downloads/gradle-2.0-all.zip"
 }
+
+//
+//sourceSets {
+//  main {
+//    resources {
+//      srcDir projectDir
+//      include 'src/main/webapp'
+//    }
+//  }
+//}
+
+//jar {
+//  from 'src/main/webapp'
+//  into 'static'
+//  manifest {
+//    attributes(
+//        'Main-Class': 'org.hypoport.honig.Application',
+//        'Implementation-Title': 'Der Shop um Honig zu kaufen'
+//    )
+//  }
+//}
+
+//task copyStaticContent (type: Copy) {
+//  from 'src/main/webapp'
+//  into 'static'
+//}
+//
+//build.dependsOn copyStaticContent
