@@ -19,6 +19,7 @@ public class Bestellung {
   public final Integer gesamtpreis = null;
   public final Date bestellDatum = new Date();
   private boolean bezahlt = false;
+  public final String abholungIn = null;
 
   public boolean isBezahlt() {
     return bezahlt;
