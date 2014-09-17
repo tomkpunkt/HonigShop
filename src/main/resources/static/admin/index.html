@@ -19,12 +19,16 @@
     tr.spaceUnder > td {
       padding-bottom: 1em;
     }
+
+    a {
+      cursor: pointer;
+    }
   </style>
 </head>
 
 <body ng-controller="honigShopAdminController">
 <div class="container">
-
+  Aktualisierung in {{sekundenBisAktualisierung}} Sekunden.
 
   <table class="table">
     <tr>
@@ -33,15 +37,17 @@
       <th>Bestelldatum</th>
       <th>Posten</th>
       <th>Gesamtpreis</th>
-      <th colspan="2">Aktionen</th>
+      <th colspan="3">Aktionen</th>
     </tr>
     <tr ng-repeat="bestellung in bestellungen | orderBy:'bestellDatum':true" style="">
-      <td>{{bestellung.email}}</td>
+      <td><a href="mailto:{{bestellung.email}}?subject=Honigbestellung mit Bestellnummer {{bestellung.id}}">[{{bestellung.email}}]</a></td>
       <td>{{bestellung.id}}</td>
       <td>{{bestellung.bestellDatum | date:'dd.MM.yyyy'}}</td>
       <td style="white-space: pre">{{bestellung.einzelPosten | postenFilter }}</td>
       <td style="vertical-align: bottom">{{bestellung.gesamtpreis |preisEuro}}</td>
       <td style="vertical-align: bottom"><a href="../bestellung/{{bestellung.id}}/quittung" target="{{bestellung.id}}" on>[Quittung]</a></td>
+      <td style="vertical-align: bottom" ng-show="!bestellung.emailVerschickt"><a ng-click="setzeAufEmailVerschickt(bestellung,$index)">[Email ist verschickt]</a></td>
+      <td style="vertical-align: bottom" ng-show="bestellung.emailVerschickt">Email bereits verschickt</td>
       <td style="vertical-align: bottom" ng-show="!bestellung.bezahlt"><a ng-click="setzeAufBezahlt(bestellung,$index)">[Bezahlt]</a></td>
       <td style="vertical-align: bottom" ng-show="bestellung.bezahlt">bereits Bezahlt</td>
     </tr>

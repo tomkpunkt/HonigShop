@@ -36,9 +36,9 @@
     </div>
     <div class="navbar-collapse collapse" id="navbar-main">
       <ul class="nav navbar-nav">
-        <li>
-          <a href="../help/">Help</a>
-        </li>
+        <!--<li>-->
+        <!--<a href="../help/">Help</a>-->
+        <!--</li>-->
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
@@ -61,9 +61,15 @@
         <h2>Willkommen im Honigshop</h2>
         <br/>
 
-        <p class="lead">Hier kannst Du den leckeren Hypoport Honig bestellen.</p>
+        <p class="lead">Willkommen im Community Imkerladen!
+          Wir wollen euch die Bestellung unseres leckeren Honig so einfach wie möglich machen, deshalb haben wir einen kleinen Online-Shop für euch ins Leben gerufen.
+        </p>
 
-        <p class="lead">Wir verwenden nur hochwertige Komponenten .... bla bla</p>
+        <p class="lead">
+          Dieses Jahr haben wir Frühlings- und Somerhonig im Angebot. Du kannst beliebig bestellen, solange der Vorrat reicht. Wie viel Honig in der jeweiligen Glasgröße (250g oder 500g) noch im Vorratskeller bunkert, kannst Du gleich neben dem Produktbild sehen.
+          Wer zuerst kommt, malt zuerst. Trage einfach die Anzahl der gewünschten Gläser in die Felder ein, ergänze unten noch Deine E-Mailadresse und wo Du den Honig in Empfang nehmen willst und drück auf „bestellen“. Du bekommst zeitnah die Bestätigung in Dein Mailpostfach und wir kümmern uns.
+          Den Honig kannst Du nach unserer Bestätigung am Empfang bei Dir in Berlin oder Lübeck gegen Bares abholen.
+        </p>
       </div>
       <div class="col-lg-4 col-md-5 col-sm-6">
         <div class="sponsor">
@@ -185,6 +191,7 @@
     </div>
     <br/>
     <input type="number" ng-model="bestellung.gesamtpreis" min="1" ng-hide="true" style="width:0px;height: 0px; ">
+    <input type="text" ng-model="bestellung.abholungIn" ng-required="true" ng-hide="true" style="width:0px;height: 0px; ">
   </form>
   <div class="alert alert-success" ng-show="bestellnummer" role="alert">
     <p>Bestellung erfolgreich, Bestellnummer: <b>{{bestellnummer}}</b>.</p>

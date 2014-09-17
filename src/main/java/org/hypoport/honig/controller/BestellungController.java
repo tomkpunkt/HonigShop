@@ -32,7 +32,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.PUT;
 @RequestMapping("/bestellung")
 public class BestellungController {
 
-  Logger log = Logger.getLogger(BestellungController.class.getName());
+  static final Logger LOGGER = Logger.getLogger(BestellungController.class.getName());
 
   @Inject
   BestellungRepository bestellungRepository;
@@ -58,6 +58,14 @@ public class BestellungController {
     return bestellungRepository.save(bestellung);
   }
 
+  @RequestMapping(method = PUT, value = "/{bestellnummer}/emailVerschickt", produces = {APPLICATION_JSON_VALUE})
+  @ResponseBody
+  public Bestellung setzeAufEmailVerschicktt(@PathVariable String bestellnummer) {
+    Bestellung bestellung = bestellungRepository.findOne(bestellnummer);
+    bestellung.setEmailVerschickt(true);
+    return bestellungRepository.save(bestellung);
+  }
+
   @RequestMapping(method = GET, value = "/{bestellnummer}/quittung", produces = {TEXT_HTML_VALUE})
   @ResponseBody
   public String quittung(@PathVariable String bestellnummer) throws IOException {
@@ -79,6 +87,6 @@ public class BestellungController {
   @ExceptionHandler(Exception.class)
   @ResponseStatus(INTERNAL_SERVER_ERROR)
   void handleException(Exception ex) {
-    log.log(Level.SEVERE, ex.getMessage(), ex);
+    LOGGER.log(Level.SEVERE, ex.getMessage(), ex);
   }
 }

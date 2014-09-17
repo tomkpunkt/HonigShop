@@ -19,6 +19,7 @@ public class Bestellung {
   public final Integer gesamtpreis = null;
   public final Date bestellDatum = new Date();
   private boolean bezahlt = false;
+  private boolean emailVerschickt = false;
   public final String abholungIn = null;
 
   public boolean isBezahlt() {
@@ -27,5 +28,13 @@ public class Bestellung {
 
   public void setBezahlt(boolean bezahlt) {
     this.bezahlt = bezahlt;
+  }
+
+  public boolean isEmailVerschickt() {
+    return emailVerschickt;
+  }
+
+  public void setEmailVerschickt(boolean emailVerschickt) {
+    this.emailVerschickt = emailVerschickt;
   }
 }
