@@ -19,11 +19,11 @@ user|  honig_shop
  
 das per build gebaute *honig-shop1.0.jar* nach opt/instances/honig_shop hochladen
  
-zum server stoppen(unter opt/instances/honig_shop):
+Server stoppen(unter opt/instances/honig_shop):
 > ./service.sh stop
  
-Starten : … start
- 
+Starten :
+> ./service.sh start
 
 ####Deployment####
 
