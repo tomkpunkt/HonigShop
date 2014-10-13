@@ -12,7 +12,7 @@ Vorraussetzungen :
 
 ####Deployment####
 
-Config| Value
+Property| Value
 :-----------|:------------
 host|  solv103
 user|  honig_shop
@@ -24,8 +24,10 @@ zum server stoppen(unter opt/instances/honig_shop):
  
 Starten : … start
  
- 
-Datenbank| Value
+
+ ####Deployment####
+
+Property| Value
 :-----------|:------------
 Host| solv103
 Port|27000
